@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Product } from '../models/product';
 
 @Injectable({
@@ -13,7 +13,9 @@ export class ProductService {
     return this.httpClient.get<Product[]>('assets/data.json');
   }
 
-  getProduct(id: number): Observable<Product> {
-    return this.httpClient.get<Product>(`assets/data.json`);
+  getProduct(id: number): Observable<Product | undefined> {
+    return this.httpClient
+      .get<Product[]>(`assets/data.json`)
+      .pipe(map((products) => products.find((p) => p.id === id)));
   }
 }
