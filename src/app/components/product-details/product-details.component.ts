@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/product';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class ProductDetailsComponent {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -36,5 +38,9 @@ export class ProductDetailsComponent {
 
   goBack() {
     this.location.back();
+  }
+
+  addToCart() {
+    this.cartService.addToCart(this.product!, this.quantity);
   }
 }

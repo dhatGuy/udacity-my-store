@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +9,13 @@ import { Component } from '@angular/core';
 export class NavComponent {
   isOpen = false;
 
+  constructor(public cartService: CartService) {}
+
   toggle = () => {
     return (this.isOpen = !this.isOpen);
+  };
+
+  getItems = () => {
+    return this.cartService.getItems();
   };
 }
