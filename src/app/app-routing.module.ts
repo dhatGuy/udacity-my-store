@@ -27,6 +27,7 @@ const routes: Routes = [
     path: 'order-success',
     component: OrderSuccessComponent,
   },
+  { path: '**', component: ProductListComponent }, // If no matching route found, go back to home route
 ];
 
 @NgModule({

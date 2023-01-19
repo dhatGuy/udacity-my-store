@@ -382,6 +382,10 @@
       <div class="col-span-6">
         <button
           type="submit"
+          [disabled]="!canCheckout"
+          [ngClass]="{
+            'cursor-not-allowed': !canCheckout
+          }"
           class="block w-full rounded-md bg-black p-2.5 text-sm text-white transition hover:shadow-lg hover:bg-gray-900"
         >
           Pay Now

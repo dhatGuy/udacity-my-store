@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 })
 export class CheckoutComponent {
   constructor(private route: Router, private fb: FormBuilder) {}
+
+  @Input() canCheckout = false;
+  @Output() checkout = new EventEmitter();
   submitted = false;
   checkoutForm = this.fb.group({
     firstName: ['', [Validators.required]],
@@ -70,8 +73,14 @@ export class CheckoutComponent {
   });
   onCheckout() {
     this.submitted = true;
-    console.log(this.checkoutForm);
 
-    // this.route.navigate(['/order-success']);
+    if (this.checkoutForm.invalid) {
+      return;
+    }
+
+    this.checkout.emit();
+    this.route.navigateByUrl('/order-success', {
+      state: { from: 'checkout' },
+    });
   }
 }
