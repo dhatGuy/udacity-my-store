@@ -27,7 +27,7 @@
             checkoutForm['controls'].firstName.invalid
           "
         >
-          <p class="mt-2 text-xs text-red-600 dark:text-red-500">Required</p>
+          <p class="mt-2 text-xs text-red-600">Required</p>
         </div>
       </div>
 
@@ -53,7 +53,7 @@
             checkoutForm['controls'].lastName.invalid
           "
         >
-          <p class="mt-2 text-xs text-red-600 dark:text-red-500">Required</p>
+          <p class="mt-2 text-xs text-red-600">Required</p>
         </div>
       </div>
 
@@ -80,13 +80,13 @@
           "
         >
           <p
-            class="mt-2 text-xs text-red-600 dark:text-red-500"
+            class="mt-2 text-xs text-red-600"
             *ngIf="checkoutForm['controls'].email.errors?.['required']"
           >
             Required
           </p>
           <p
-            class="mt-2 text-xs text-red-600 dark:text-red-500"
+            class="mt-2 text-xs text-red-600"
             *ngIf="checkoutForm['controls'].email.errors?.['pattern']"
           >
             Invalid email
@@ -117,25 +117,25 @@
           "
         >
           <p
-            class="mt-2 text-xs text-red-600 dark:text-red-500"
+            class="mt-2 text-xs text-red-600"
             *ngIf="checkoutForm['controls'].phone.errors?.['required']"
           >
             Required
           </p>
           <p
-            class="mt-2 text-xs text-red-600 dark:text-red-500"
+            class="mt-2 text-xs text-red-600"
             *ngIf="checkoutForm['controls'].phone.errors?.['pattern']"
           >
             Invalid phone
           </p>
           <p
-            class="mt-2 text-xs text-red-600 dark:text-red-500"
+            class="mt-2 text-xs text-red-600"
             *ngIf="checkoutForm['controls'].phone.errors?.['maxlength']"
           >
             11 max length
           </p>
           <p
-            class="mt-2 text-xs text-red-600 dark:text-red-500"
+            class="mt-2 text-xs text-red-600"
             *ngIf="checkoutForm['controls'].phone.errors?.['minlength']"
           >
             10 min length
@@ -177,19 +177,19 @@
               class="mb-2"
             >
               <p
-                class="mt-2 text-xs text-red-600 dark:text-red-500"
+                class="mt-2 text-xs text-red-600"
                 *ngIf="checkoutForm['controls'].card.controls.number.errors?.['required']"
               >
                 Required
               </p>
               <p
-                class="mt-2 text-xs text-red-600 dark:text-red-500"
+                class="mt-2 text-xs text-red-600"
                 *ngIf="checkoutForm['controls'].card.controls.number.errors?.['pattern']"
               >
                 Invalid number
               </p>
               <p
-                class="mt-2 text-xs text-red-600 dark:text-red-500"
+                class="mt-2 text-xs text-red-600"
                 *ngIf="checkoutForm['controls'].card.controls.number.errors?.['maxlength'] || 
                 checkoutForm['controls'].card.controls.number.errors?.['minlength']"
               >
@@ -224,13 +224,13 @@
                 "
               >
                 <p
-                  class="mt-2 text-xs text-red-600 dark:text-red-500"
+                  class="mt-2 text-xs text-red-600"
                   *ngIf="checkoutForm['controls'].card.controls.expiryDate.errors?.['required']"
                 >
                   Required
                 </p>
                 <p
-                  class="mt-2 text-xs text-red-600 dark:text-red-500"
+                  class="mt-2 text-xs text-red-600"
                   *ngIf="checkoutForm['controls'].card.controls.expiryDate.errors?.['maxlength']
                   || checkoutForm['controls'].card.controls.expiryDate.errors?.['minlength']
                   "
@@ -264,19 +264,19 @@
                 "
               >
                 <p
-                  class="mt-2 text-xs text-red-600 dark:text-red-500"
+                  class="mt-2 text-xs text-red-600"
                   *ngIf="checkoutForm['controls'].card.controls.cvv.errors?.['required']"
                 >
                   Required
                 </p>
                 <p
-                  class="mt-2 text-xs text-red-600 dark:text-red-500"
+                  class="mt-2 text-xs text-red-600"
                   *ngIf="checkoutForm['controls'].card.controls.cvv.errors?.['pattern']"
                 >
                   Invalid CVV
                 </p>
                 <p
-                  class="mt-2 text-xs text-red-600 dark:text-red-500"
+                  class="mt-2 text-xs text-red-600"
                   *ngIf="checkoutForm['controls'].card.controls.cvv.errors?.['maxlength']
                   || checkoutForm['controls'].card.controls.cvv.errors?.['minlength']
                   "
@@ -323,7 +323,7 @@
               class="mb-1"
             >
               <p
-                class="mt-2 text-xs text-red-600 dark:text-red-500"
+                class="mt-2 text-xs text-red-600"
                 *ngIf="checkoutForm['controls'].address.controls.country.errors?.['required']"
               >
                 Required
@@ -355,19 +355,19 @@
               "
             >
               <p
-                class="mt-2 text-xs text-red-600 dark:text-red-500"
+                class="mt-2 text-xs text-red-600"
                 *ngIf="checkoutForm['controls'].address.controls.zip.errors?.['required']"
               >
                 Required
               </p>
               <p
-                class="mt-2 text-xs text-red-600 dark:text-red-500"
+                class="mt-2 text-xs text-red-600"
                 *ngIf="checkoutForm['controls'].address.controls.zip.errors?.['pattern']"
               >
                 Invalid zip
               </p>
               <p
-                class="mt-2 text-xs text-red-600 dark:text-red-500"
+                class="mt-2 text-xs text-red-600"
                 *ngIf="checkoutForm['controls'].address.controls.zip.errors?.['maxlength']
                 || checkoutForm['controls'].address.controls.zip.errors?.['minlength']
                 "
