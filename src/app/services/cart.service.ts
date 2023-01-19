@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as localforage from 'localforage';
 import { CartItem } from '../models/cartItem';
 import { Product } from '../models/product';
 
@@ -6,20 +7,15 @@ import { Product } from '../models/product';
   providedIn: 'root',
 })
 export class CartService {
-  items: CartItem[] = [
-    {
-      id: 2,
-      name: 'Headphones',
-      price: 249.99,
-      url: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      description: 'Listen to stuff!',
-      quantity: 1,
-    },
-  ];
+  items: CartItem[] = [];
 
   total = 0.0;
 
-  constructor() {}
+  constructor() {
+    localforage.getItem('cart').then((value) => {
+      value ? (this.items = value as CartItem[]) : (this.items = []);
+    });
+  }
 
   addToCart(product: Product, quantity: number) {
     let item = this.items.find((item) => item.id === product.id);
@@ -29,6 +25,7 @@ export class CartService {
           ...product,
           quantity,
         });
+    localforage.setItem('cart', this.items);
   }
 
   updateQuantity(id: number, quantity: number) {
@@ -36,6 +33,7 @@ export class CartService {
     if (item) {
       item.quantity = quantity;
     }
+    localforage.setItem('cart', this.items);
     return this.items;
   }
 
@@ -45,11 +43,13 @@ export class CartService {
 
   clearCart() {
     this.items = [];
+    localforage.setItem('cart', this.items);
     return this.items;
   }
 
   removeItem(id: number) {
     this.items = this.items.filter((item) => item.id !== id);
+    localforage.setItem('cart', this.items);
     return this.items;
   }
 }
