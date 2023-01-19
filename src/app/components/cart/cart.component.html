@@ -1,39 +1,42 @@
 <section>
-  <div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-8">
-    <div class="max-w-3xl mx-auto">
-      <header class="text-center">
-        <h1 class="text-xl font-bold text-gray-900 sm:text-3xl">Your Cart</h1>
-      </header>
+  <h1 class="sr-only">Checkout</h1>
 
-      <div class="mt-8">
-        <ul class="gap-y-10">
-          <app-cart-item
-            *ngFor="let item of items"
-            [item]="item"
-            (removeItem)="removeItem($event)"
-            (updateQuantity)="updateQuantity($event)"
-          ></app-cart-item>
-        </ul>
+  <div class="grid grid-cols-1 mx-auto max-w-screen-2xl md:grid-cols-2">
+    <div class="py-12 bg-gray-50 md:py-24">
+      <section>
+        <div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-8">
+          <div class="max-w-3xl mx-auto">
+            <header class="text-center">
+              <h1 class="text-xl font-bold text-gray-900 sm:text-3xl">
+                Your Cart
+              </h1>
+            </header>
 
-        <div class="flex justify-end pt-8 mt-8 border-t border-gray-100">
-          <div class="w-screen max-w-lg space-y-4">
-            <dl class="space-y-0.5 text-sm text-gray-700">
-              <div class="flex justify-between !text-base font-medium">
-                <dt>Total</dt>
-                <dd>{{ total() | currency }}</dd>
+            <div class="mt-8">
+              <ul class="gap-y-10">
+                <app-cart-item
+                  *ngFor="let item of items"
+                  [item]="item"
+                  (removeItem)="removeItem($event)"
+                  (updateQuantity)="updateQuantity($event)"
+                ></app-cart-item>
+              </ul>
+
+              <div class="flex justify-end pt-8 mt-8 border-t border-gray-100">
+                <div class="w-screen max-w-lg space-y-4">
+                  <dl class="space-y-0.5 text-sm text-gray-700">
+                    <div class="flex justify-between !text-base font-medium">
+                      <dt>Total</dt>
+                      <dd>{{ total() | currency }}</dd>
+                    </div>
+                  </dl>
+                </div>
               </div>
-            </dl>
-            <div class="flex justify-end">
-              <a
-                routerLink="/checkout"
-                class="block px-5 py-3 text-sm text-gray-100 transition bg-blue-700 rounded hover:bg-blue-600"
-              >
-                Checkout
-              </a>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
+    <app-checkout></app-checkout>
   </div>
 </section>

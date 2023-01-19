@@ -1,0 +1,392 @@
+<div class="py-12 bg-white md:py-24">
+  <div class="max-w-lg px-4 mx-auto lg:px-8">
+    <form
+      class="grid grid-cols-6 gap-4"
+      (ngSubmit)="onCheckout()"
+      [formGroup]="checkoutForm"
+    >
+      <div class="col-span-3">
+        <label for="FirstName" class="block text-xs font-medium text-gray-700">
+          First Name
+        </label>
+
+        <input
+          type="text"
+          id="FirstName"
+          [ngClass]="{
+            'border-red-700':
+              (checkoutForm['controls'].firstName.touched || submitted) &&
+              checkoutForm['controls'].firstName.invalid
+          }"
+          class="w-full mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm"
+          formControlName="firstName"
+        />
+        <div
+          *ngIf="
+            (checkoutForm['controls'].firstName.touched || submitted) &&
+            checkoutForm['controls'].firstName.invalid
+          "
+        >
+          <p class="mt-2 text-xs text-red-600 dark:text-red-500">Required</p>
+        </div>
+      </div>
+
+      <div class="col-span-3">
+        <label for="LastName" class="block text-xs font-medium text-gray-700">
+          Last Name
+        </label>
+
+        <input
+          type="text"
+          id="LastName"
+          [ngClass]="{
+            'border-red-700':
+              (checkoutForm['controls'].lastName.touched || submitted) &&
+              checkoutForm['controls'].lastName.invalid
+          }"
+          class="w-full mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm"
+          formControlName="lastName"
+        />
+        <div
+          *ngIf="
+            (checkoutForm['controls'].lastName.touched || submitted) &&
+            checkoutForm['controls'].lastName.invalid
+          "
+        >
+          <p class="mt-2 text-xs text-red-600 dark:text-red-500">Required</p>
+        </div>
+      </div>
+
+      <div class="col-span-6">
+        <label for="Email" class="block text-xs font-medium text-gray-700">
+          Email
+        </label>
+
+        <input
+          type="email"
+          id="Email"
+          [ngClass]="{
+            'border-red-700':
+              (checkoutForm['controls'].email.touched || submitted) &&
+              checkoutForm['controls'].email.invalid
+          }"
+          class="w-full mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm"
+          formControlName="email"
+        />
+        <div
+          *ngIf="
+            (checkoutForm['controls'].email.touched || submitted) &&
+            checkoutForm['controls'].email.invalid
+          "
+        >
+          <p
+            class="mt-2 text-xs text-red-600 dark:text-red-500"
+            *ngIf="checkoutForm['controls'].email.errors?.['required']"
+          >
+            Required
+          </p>
+          <p
+            class="mt-2 text-xs text-red-600 dark:text-red-500"
+            *ngIf="checkoutForm['controls'].email.errors?.['pattern']"
+          >
+            Invalid email
+          </p>
+        </div>
+      </div>
+
+      <div class="col-span-6">
+        <label for="Phone" class="block text-xs font-medium text-gray-700">
+          Phone
+        </label>
+
+        <input
+          type="tel"
+          id="Phone"
+          [ngClass]="{
+            'border-red-700':
+              (checkoutForm['controls'].phone.touched || submitted) &&
+              checkoutForm['controls'].phone.invalid
+          }"
+          class="w-full mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm"
+          formControlName="phone"
+        />
+        <div
+          *ngIf="
+            (checkoutForm['controls'].phone.touched || submitted) &&
+            checkoutForm['controls'].phone.invalid
+          "
+        >
+          <p
+            class="mt-2 text-xs text-red-600 dark:text-red-500"
+            *ngIf="checkoutForm['controls'].phone.errors?.['required']"
+          >
+            Required
+          </p>
+          <p
+            class="mt-2 text-xs text-red-600 dark:text-red-500"
+            *ngIf="checkoutForm['controls'].phone.errors?.['pattern']"
+          >
+            Invalid phone
+          </p>
+          <p
+            class="mt-2 text-xs text-red-600 dark:text-red-500"
+            *ngIf="checkoutForm['controls'].phone.errors?.['maxlength']"
+          >
+            11 max length
+          </p>
+          <p
+            class="mt-2 text-xs text-red-600 dark:text-red-500"
+            *ngIf="checkoutForm['controls'].phone.errors?.['minlength']"
+          >
+            10 min length
+          </p>
+        </div>
+      </div>
+
+      <fieldset class="col-span-6">
+        <legend class="block text-sm font-medium text-gray-700">
+          Card Details
+        </legend>
+
+        <div
+          class="mt-1 -space-y-px bg-white rounded-md shadow-sm"
+          formGroupName="card"
+        >
+          <div>
+            <label for="CardNumber" class="sr-only"> Card Number </label>
+
+            <input
+              type="text"
+              id="CardNumber"
+              [ngClass]="{
+                'border-red-700':
+                  (checkoutForm['controls'].card.controls.number.touched ||
+                    submitted) &&
+                  checkoutForm['controls'].card.controls.number.invalid
+              }"
+              placeholder="Card Number"
+              formControlName="number"
+              class="relative w-full mt-1 border-gray-200 rounded-t-md focus:z-10 sm:text-sm"
+            />
+            <div
+              *ngIf="
+                (checkoutForm['controls'].card.controls.number.touched ||
+                  submitted) &&
+                checkoutForm['controls'].card.controls.number.invalid
+              "
+              class="mb-2"
+            >
+              <p
+                class="mt-2 text-xs text-red-600 dark:text-red-500"
+                *ngIf="checkoutForm['controls'].card.controls.number.errors?.['required']"
+              >
+                Required
+              </p>
+              <p
+                class="mt-2 text-xs text-red-600 dark:text-red-500"
+                *ngIf="checkoutForm['controls'].card.controls.number.errors?.['pattern']"
+              >
+                Invalid number
+              </p>
+              <p
+                class="mt-2 text-xs text-red-600 dark:text-red-500"
+                *ngIf="checkoutForm['controls'].card.controls.number.errors?.['maxlength'] || 
+                checkoutForm['controls'].card.controls.number.errors?.['minlength']"
+              >
+                16 characters
+              </p>
+            </div>
+          </div>
+
+          <div class="flex -space-x-px">
+            <div class="flex-1">
+              <label for="CardExpiry" class="sr-only"> Card Expiry </label>
+
+              <input
+                type="text"
+                id="CardExpiry"
+                placeholder="Expiry Date (MM/YY)"
+                [ngClass]="{
+                  'border-red-700':
+                    (checkoutForm['controls'].card.controls.expiryDate
+                      .touched ||
+                      submitted) &&
+                    checkoutForm['controls'].card.controls.expiryDate.invalid
+                }"
+                class="relative w-full border-gray-200 rounded-bl-md focus:z-10 sm:text-sm"
+                formControlName="expiryDate"
+              />
+              <div
+                *ngIf="
+                  (checkoutForm['controls'].card.controls.expiryDate.touched ||
+                    submitted) &&
+                  checkoutForm['controls'].card.controls.expiryDate.invalid
+                "
+              >
+                <p
+                  class="mt-2 text-xs text-red-600 dark:text-red-500"
+                  *ngIf="checkoutForm['controls'].card.controls.expiryDate.errors?.['required']"
+                >
+                  Required
+                </p>
+                <p
+                  class="mt-2 text-xs text-red-600 dark:text-red-500"
+                  *ngIf="checkoutForm['controls'].card.controls.expiryDate.errors?.['maxlength']
+                  || checkoutForm['controls'].card.controls.expiryDate.errors?.['minlength']
+                  "
+                >
+                  5 characters
+                </p>
+              </div>
+            </div>
+
+            <div class="flex-1">
+              <label for="CardCVV" class="sr-only"> Card CVV </label>
+
+              <input
+                type="text"
+                id="CardCVV"
+                placeholder="CVV"
+                [ngClass]="{
+                  'border-red-700':
+                    (checkoutForm['controls'].card.controls.cvv.touched ||
+                      submitted) &&
+                    checkoutForm['controls'].card.controls.cvv.invalid
+                }"
+                class="relative w-full border-gray-200 rounded-br-md focus:z-10 sm:text-sm"
+                formControlName="cvv"
+              />
+              <div
+                *ngIf="
+                  (checkoutForm['controls'].card.controls.cvv.touched ||
+                    submitted) &&
+                  checkoutForm['controls'].card.controls.cvv.invalid
+                "
+              >
+                <p
+                  class="mt-2 text-xs text-red-600 dark:text-red-500"
+                  *ngIf="checkoutForm['controls'].card.controls.cvv.errors?.['required']"
+                >
+                  Required
+                </p>
+                <p
+                  class="mt-2 text-xs text-red-600 dark:text-red-500"
+                  *ngIf="checkoutForm['controls'].card.controls.cvv.errors?.['pattern']"
+                >
+                  Invalid CVV
+                </p>
+                <p
+                  class="mt-2 text-xs text-red-600 dark:text-red-500"
+                  *ngIf="checkoutForm['controls'].card.controls.cvv.errors?.['maxlength']
+                  || checkoutForm['controls'].card.controls.cvv.errors?.['minlength']
+                  "
+                >
+                  3 characters
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="col-span-6">
+        <legend class="block text-sm font-medium text-gray-700">
+          Billing Address
+        </legend>
+
+        <div
+          class="mt-1 -space-y-px bg-white rounded-md shadow-sm"
+          formGroupName="address"
+        >
+          <div>
+            <label for="Country" class="sr-only">Country</label>
+
+            <input
+              id="Country"
+              type="text"
+              placeholder="Country"
+              [ngClass]="{
+                'border-red-700':
+                  (checkoutForm['controls'].address.controls.country.touched ||
+                    submitted) &&
+                  checkoutForm['controls'].address.controls.country.invalid
+              }"
+              class="relative w-full border-gray-200 rounded-t-md focus:z-10 sm:text-sm"
+              formControlName="country"
+            />
+            <div
+              *ngIf="
+                (checkoutForm['controls'].address.controls.country.touched ||
+                  submitted) &&
+                checkoutForm['controls'].address.controls.country.invalid
+              "
+              class="mb-1"
+            >
+              <p
+                class="mt-2 text-xs text-red-600 dark:text-red-500"
+                *ngIf="checkoutForm['controls'].address.controls.country.errors?.['required']"
+              >
+                Required
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <label class="sr-only" for="PostalCode"> ZIP/Post Code </label>
+
+            <input
+              type="text"
+              id="PostalCode"
+              placeholder="ZIP/Post Code"
+              [ngClass]="{
+                'border-red-700':
+                  (checkoutForm['controls'].address.controls.zip.touched ||
+                    submitted) &&
+                  checkoutForm['controls'].address.controls.zip.invalid
+              }"
+              class="relative w-full border-gray-200 rounded-b-md focus:z-10 sm:text-sm"
+              formControlName="zip"
+            />
+            <div
+              *ngIf="
+                (checkoutForm['controls'].address.controls.zip.touched ||
+                  submitted) &&
+                checkoutForm['controls'].address.controls.zip.invalid
+              "
+            >
+              <p
+                class="mt-2 text-xs text-red-600 dark:text-red-500"
+                *ngIf="checkoutForm['controls'].address.controls.zip.errors?.['required']"
+              >
+                Required
+              </p>
+              <p
+                class="mt-2 text-xs text-red-600 dark:text-red-500"
+                *ngIf="checkoutForm['controls'].address.controls.zip.errors?.['pattern']"
+              >
+                Invalid zip
+              </p>
+              <p
+                class="mt-2 text-xs text-red-600 dark:text-red-500"
+                *ngIf="checkoutForm['controls'].address.controls.zip.errors?.['maxlength']
+                || checkoutForm['controls'].address.controls.zip.errors?.['minlength']
+                "
+              >
+                6 characters
+              </p>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="col-span-6">
+        <button
+          type="submit"
+          class="block w-full rounded-md bg-black p-2.5 text-sm text-white transition hover:shadow-lg hover:bg-gray-900"
+        >
+          Pay Now
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

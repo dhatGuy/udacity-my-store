@@ -15,10 +15,4 @@ export class CartItemComponent {
     id: number;
     quantity: number;
   }>();
-
-  quantity: number = 1;
-
-  ngOnChanges(): void {
-    console.log(this.item);
-  }
 }
