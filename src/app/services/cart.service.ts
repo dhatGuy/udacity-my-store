@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as localforage from 'localforage';
+import { ToastrService } from 'ngx-toastr';
 import { CartItem } from '../models/cartItem';
 import { Product } from '../models/product';
 
@@ -11,7 +12,7 @@ export class CartService {
 
   total = 0.0;
 
-  constructor() {
+  constructor(private toastr: ToastrService) {
     localforage.getItem('cart').then((value) => {
       value ? (this.items = value as CartItem[]) : (this.items = []);
     });
@@ -26,6 +27,10 @@ export class CartService {
           quantity,
         });
     localforage.setItem('cart', this.items);
+
+    this.toastr.success(`${product.name} added to cart`, 'Success', {
+      timeOut: 2000,
+    });
   }
 
   updateQuantity(id: number, quantity: number) {
@@ -50,6 +55,7 @@ export class CartService {
   removeItem(id: number) {
     this.items = this.items.filter((item) => item.id !== id);
     localforage.setItem('cart', this.items);
+
     return this.items;
   }
 }
