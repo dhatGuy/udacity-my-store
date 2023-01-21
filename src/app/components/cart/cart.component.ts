@@ -24,7 +24,7 @@ export class CartComponent {
   }
 
   getItems() {
-    this.items = this.cartService.getItems();
+    this.cartService.getItems().subscribe((items) => (this.items = items));
   }
 
   removeItem(id: number) {
